@@ -63,6 +63,7 @@ function set_message($message){
   $_SESSION['__messages'][] = $message;
 }
 
+// メッセージ
 function get_messages(){
   $messages = get_session('__messages');
   if($messages === ''){
@@ -72,10 +73,12 @@ function get_messages(){
   return $messages;
 }
 
+// ログイン処理
 function is_logined(){
   return get_session('user_id') !== '';
 }
 
+// ファイルアップロード
 function get_upload_filename($file){
   if(is_valid_upload_image($file) === false){
     return '';
@@ -134,7 +137,7 @@ function is_valid_upload_image($image){
   }
   return true;
 }
-// functions.php の最後に追記する
+// htmlspecialcharsの簡略化
 function h($str){
   return htmlspecialchars($str,ENT_QUOTES,'UTF-8');
 }
