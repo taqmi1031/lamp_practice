@@ -1,3 +1,8 @@
+<?php
+  // クリックジャッキング対策
+  header('X-FRAME-OPTIONS: DENY');
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -14,7 +19,7 @@
     <h1>商品管理</h1>
 
     <?php include VIEW_PATH . 'templates/messages.php'; ?>
-
+    
     <form 
       method="post" 
       action="admin_insert_item.php" 
@@ -45,6 +50,7 @@
       </div>
       
       <input type="submit" value="商品追加" class="btn btn-primary">
+      <input type="hidden" name="csrf_token" value="<?php print $token; ?>">  
     </form>
 
 
@@ -74,6 +80,7 @@
                 </div>
                 <input type="submit" value="変更" class="btn btn-secondary">
                 <input type="hidden" name="item_id" value="<?php print($item['item_id']); ?>">
+                <input type="hidden" name="csrf_token" value="<?php print $token; ?>">  
               </form>
             </td>
             <td>
@@ -87,11 +94,13 @@
                   <input type="hidden" name="changes_to" value="open">
                 <?php } ?>
                 <input type="hidden" name="item_id" value="<?php print($item['item_id']); ?>">
+                <input type="hidden" name="csrf_token" value="<?php print $token; ?>">  
               </form>
 
               <form method="post" action="admin_delete_item.php">
                 <input type="submit" value="削除" class="btn btn-danger delete">
                 <input type="hidden" name="item_id" value="<?php print($item['item_id']); ?>">
+                <input type="hidden" name="csrf_token" value="<?php print $token; ?>">  
               </form>
 
             </td>
