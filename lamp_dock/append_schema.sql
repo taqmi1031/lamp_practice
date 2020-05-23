@@ -38,10 +38,7 @@ CREATE TABLE 'details' (
 -- テーブルのインデックス `history`
 --
 ALTER TABLE `history`
-  ADD PRIMARY KEY (`order_id`),
-  ADD KEY `item_id` (`item_id`),
-  ADD KEY `user_id` (`user_id`);
-  ADD KEY `cart_id` (`cart_id`);
+  ADD PRIMARY KEY (`order_id`);
 
 --
 -- テーブルのインデックス `details`
@@ -49,6 +46,9 @@ ALTER TABLE `history`
 ALTER TABLE `details`
   ADD PRIMARY KEY (`detail_id`),
   ADD KEY `order_id` (`order_id`),
+  ADD KEY `item_id` (`item_id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `cart_id` (`cart_id`);
 
 --
 -- ダンプしたテーブルのAUTO_INCREMENT
@@ -74,13 +74,13 @@ ALTER TABLE `details`
 -- テーブルの制約 `history`
 --
 ALTER TABLE `history`
-  ADD CONSTRAINT `history_ibfk_1` FOREIGN KEY (`item_id`) REFERENCES `items` (`item_id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `history_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
-  ADD CONSTRAINT `history_ibfk_3` FOREIGN KEY (`cart_id`) REFERENCES `users` (`cart_id`) ON DELETE CASCADE;
-
+  ADD CONSTRAINT `history_ibfk_1` FOREIGN KEY (`detail_id`) REFERENCES `details` (`detail_id`);
 --
 -- テーブルの制約 `details`
 --
 ALTER TABLE `details`
-  ADD CONSTRAINT `history_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `users` (`order_id`);
+  ADD CONSTRAINT `details_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `history` (`order_id`);
+  ADD CONSTRAINT `details_ibfk_2` FOREIGN KEY (`item_id`) REFERENCES `items` (`item_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `details_ibfk_3` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
+  ADD CONSTRAINT `details_ibfk_4` FOREIGN KEY (`cart_id`) REFERENCES `cart` (`cart_id`) ON DELETE CASCADE;
 COMMIT;
