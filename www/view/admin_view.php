@@ -23,7 +23,7 @@
     <form 
       method="post" 
       action="admin_insert_item.php" 
-      enctype="multipart/form-data"
+      enctype="multipart/form-data" 
       class="add_item_form col-md-6">
       <div class="form-group">
         <label for="name">名前: </label>
@@ -69,7 +69,8 @@
           <?php foreach($items as $item){ ?>
           <tr class="<?php print(is_open($item) ? '' : 'close_item'); ?>">
             <td><img src="<?php print(IMAGE_PATH . $item['image']);?>" class="item_image"></td>
-            <td><?php print($item['name']); ?></td>
+            <!-- htmlspecialchars関数の追加 -->
+            <td><?php print h(($item['name'])); ?></td>
             <td><?php print(number_format($item['price'])); ?>円</td>
             <td>
               <form method="post" action="admin_change_stock.php">
