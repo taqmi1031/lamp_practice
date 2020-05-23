@@ -9,6 +9,11 @@ if(is_logined() === true){
   redirect_to(HOME_URL);
 }
 
+if(is_valid_csrf_token($_POST['csrf_token']) != $_POST['token']) {
+  header('location:login.php');
+  exit;
+}
+
 $name = get_post('name');
 $password = get_post('password');
 
