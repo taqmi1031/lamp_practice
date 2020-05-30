@@ -45,7 +45,6 @@ ALTER TABLE `history`
 -- テーブルのインデックス `details`
 --
 ALTER TABLE `details`
-  ADD PRIMARY KEY (`order_id`),
   ADD KEY `item_id` (`item_id`);
 
 --
@@ -56,12 +55,6 @@ ALTER TABLE `details`
 -- テーブルのAUTO_INCREMENT `history`
 --
 ALTER TABLE `history`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- テーブルのAUTO_INCREMENT `details`
---
-ALTER TABLE `details`
   MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
