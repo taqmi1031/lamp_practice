@@ -45,8 +45,8 @@ ALTER TABLE `history`
 -- テーブルのインデックス `details`
 --
 ALTER TABLE `details`
-  ADD PRIMARY KEY `order_id` (`order_id`),
-  ADD KEY `item_id` (`item_id`),
+  ADD PRIMARY KEY (`order_id`),
+  ADD KEY `item_id` (`item_id`);
 
 --
 -- ダンプしたテーブルのAUTO_INCREMENT
