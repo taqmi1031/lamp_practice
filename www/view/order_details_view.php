@@ -29,8 +29,8 @@
         </thead>
         <tbody>
           <tr>
-            <td><?php print h($history['order_id']); ?></td>
-            <td><?php print h($history['created']); ?></td>
+            <td><?php print h($order_id); ?></td>
+            <td><?php print h($created); ?></td>
             <td><?php print h(number_format($total['subtotal'])); ?></td>
           </tr>
         </tbody>

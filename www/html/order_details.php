@@ -19,7 +19,8 @@ $token = get_csrf_token();
 
 $order_id = get_post('order_id');
 
-$detail = get_history_details($db, $order_id);
+$detail = get_history_data($db, $order_id);
+$created = $detail[0]['created'];
 
 $total = sum_total($db, $order_id);
 

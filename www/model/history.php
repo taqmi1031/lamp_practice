@@ -47,6 +47,5 @@ function sum_total($db, $order_id) {
             FROM details
             WHERE order_id = ?
         ";
-
 return fetch_query($db, $sql, array($order_id));   
 }   

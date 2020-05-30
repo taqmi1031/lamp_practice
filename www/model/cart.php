@@ -109,16 +109,17 @@ function purchase_carts($db, $carts){
       $db,
       $carts[0]['user_id']
     );
+    $order_id = $db->lastInsertId(); 
 
+    foreach($carts as $cart){
     insert_details(
       $db,
-      $history[0]['order_id'],
-      $carts[0]['item_id'],
-      $carts[0]['price'],
-      $carts[0]['amount']
+      $order_id,
+      $cart['item_id'],
+      $cart['price'],
+      $cart['amount']
     );
     
-    foreach($carts as $cart){
       if(update_item_stock(
         $db, 
         $cart['item_id'], 
