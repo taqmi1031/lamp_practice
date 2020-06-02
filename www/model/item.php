@@ -44,6 +44,31 @@ function get_items($db, $is_open = false){
   return fetch_all_query($db, $sql);
 }
 
+// ページ毎に商品を取得
+function get_items_page($db, $page){
+  $sql = "
+    SELECT
+      item_id,
+      name,
+      stock,
+      price,
+      image,
+      status
+    FROM
+      items
+    WHERE
+      status = 1
+    LIMIT 
+  ";
+  if ($page !==1){
+    $limit = ($page - 1) * 8;
+    $sql .= "$limit,8";
+  }else{
+    $sql .= "8";
+  }
+  return fetch_all_query($db, $sql);
+}
+
 function get_all_items($db){
   return get_items($db);
 }
